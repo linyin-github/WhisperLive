@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentTab = await getCurrentTab();
 
     // Send a message to the background script to start capturing
-    let host = "localhost";
+    let host = "23.91.96.175";
     let port = "9090";
     const useCollaboraServer = useServerCheckbox.checked;
     if (useCollaboraServer){
