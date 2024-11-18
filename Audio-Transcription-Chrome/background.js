@@ -45,7 +45,21 @@ function openExtensionOptions() {
         url: `chrome-extension://${chrome.runtime.id}/options.html`,
       },
       (tab) => {
+// 附加调试器到新创建的标签页
+chrome.debugger.attach({ tabId: tab.id }, "1.3", () => {
+  if (chrome.runtime.lastError) {
+      console.error("Error attaching debugger:", chrome.runtime.lastError.message);
+      return;
+  }
+
+  // 打开DevTools
+  chrome.debugger.sendCommand({ tabId: tab.id }, "Page.enable", {}, () => {
+      console.log("DevTools opened for tab:", tab.id);
+  });
+});
+
         resolve(tab);
+
       }
     );
   });

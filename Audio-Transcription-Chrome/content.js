@@ -6,6 +6,10 @@ var elem_text = null;
 var segments = [];
 var text_segments = [];
 
+/**
+ * 
+ * @returns 弹出等待提示窗口
+ */
 function initPopupElement() {
   if (document.getElementById('popupElement')) {
     return;
@@ -40,7 +44,10 @@ function initPopupElement() {
   document.body.appendChild(popupContainer);
 }
 
-
+/**
+ * * 弹出窗口显示提示内容
+ * @param {*} customText 显示的内容
+ */
 function showPopup(customText) {
   const popup = document.getElementById('popupElement');
   const popupText = popup.querySelector('.popupText');
@@ -52,6 +59,10 @@ function showPopup(customText) {
 }
 
 
+/**
+ * 
+ * @returns 初始化一个字幕窗口
+ */
 function init_element() {
     if (document.getElementById('transcription')) {
         return;
@@ -162,9 +173,11 @@ function get_lines(elem, line_height) {
 function remove_element() {
     var elem = document.getElementById('transcription')
     for (var i = 0; i < 4; i++) {
-        document.getElementById("t" + i).remove();
+        if(document.getElementById("t" + i))
+            document.getElementById("t" + i).remove();
     }
-    elem.remove()
+    if(elem)
+        elem.remove()
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

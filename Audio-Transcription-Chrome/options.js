@@ -91,7 +91,7 @@ async function startRecord(option) {
     stream.oninactive = () => {
       window.close();
     };
-    const socket = new WebSocket(`ws://${option.host}:${option.port}/`);
+    const socket = new WebSocket(`wss://${option.host}:${option.port}/whisperLive/`);
     let isServerReady = false;
     let language = option.language;
     socket.onopen = function(e) { 
